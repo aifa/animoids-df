@@ -9,21 +9,27 @@ ENV CMAKE_PREFIX_PATH="$(dirname $(which conda))/../"
 
 # Setting noninteractive build, setting up tzdata and configuring timezones
 ENV DEBIAN_FRONTEND=noninteractive
-ENV TZ=Europe/Berlin
+ENV TZ=Europe/Amsterdam
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN apt-get update && apt-get install -y libglib2.0-0 libsm6 libxrender-dev libxext6 nano mc glances vim git \
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub
+
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub
+
+RUN apt-get update && apt-get install -y libglib2.0-0 libsm6 libxrender-dev libxext6 nano mc glances vim git wget \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
 # Install cython
 RUN conda install cython -y && conda clean --all
+RUN conda install packaging
 
 # Installing APEX
 RUN pip install -U pip
 RUN git clone https://github.com/NVIDIA/apex
+
 RUN sed -i 's/check_cuda_torch_binary_vs_bare_metal(torch.utils.cpp_extension.CUDA_HOME)/pass/g' apex/setup.py
-RUN pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext"  ./apex
+RUN pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation --global-option="--cpp_ext" --global-option="--cuda_ext"  ./apex
 RUN apt-get update -y
 RUN apt-get install build-essential cmake -y
 RUN apt-get install libopenblas-dev liblapack-dev -y
@@ -32,6 +38,7 @@ RUN pip install dlib
 RUN pip install facenet-pytorch
 RUN pip install albumentations==1.0.0 timm==0.4.12 pytorch_toolbelt tensorboardx
 RUN pip install cython jupyter  jupyterlab ipykernel matplotlib tqdm pandas
+RUN pip install packaging  # Add this line to install the packaging module
 
 # download pretraned Imagenet models
 RUN apt install wget
@@ -51,4 +58,3 @@ RUN chmod 777 predict_submission.sh
 ENV PYTHONPATH=.
 
 CMD ["/bin/bash"]
-
