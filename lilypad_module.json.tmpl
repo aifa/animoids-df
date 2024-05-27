@@ -17,7 +17,7 @@
             "Docker": {},
             "EngineSpec": {
                 "Params": {
-                "Entrypoint": [./predict_submission.sh /input outputs/submission.csv],
+                "Entrypoint": ["./predict_submission.sh /input /outputs/submission.csv"],
                 "EnvironmentVariables": [
                     {{ if .Prompt }}"{{ subst "PROMPT=%s" .Prompt }}"{{ end }},
                     {{if .inputCid}}{{.inpudCid}}{{else}}"CID=QmaDxKbSz91R1nQS9jDNEQ9akyLKHsMouWADrxdJX2ytsZ"{{end}},
