@@ -21,7 +21,7 @@
                     "INPUT_DIR=/input",
                     "OUTPUT_DIR=/outputs"
                 ],
-                "Image": "yfantisa/df:latest@sha256:e29b455c059b995b80a4269b93c5713de88ddb9a7ff80755362abf97af9b33a2"
+                "Image": "yfantisa/df:latest@sha256:cc3d34ccb413e326ce0cd238ecc6e627dcdc04bed68b0eaa3286c598848f4434"
             },
             "Engine": "Docker",
             "Language": {
