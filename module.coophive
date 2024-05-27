@@ -1,0 +1,63 @@
+{
+    "machine": {
+        "gpu": 0,
+        "ram": 100,
+        "cpu": 1000
+    },
+    "job": {
+        "APIVersion": "V1beta1",
+        "Metadata": {
+            "CreatedAt": "0001-01-01T00:00:00Z",
+            "Requester": {}
+        },
+        "Spec": {
+            "Deal": {
+                "Concurrency": 1
+            },
+           "Docker": {
+                "Entrypoint": ["./predict_submission.sh /input /outputs/submission.csv"],
+                s"EnvironmentVariables": [
+                    {{if .inputCid}}{{.inputCid}}{{else}}"CID=QmaDxKbSz91R1nQS9jDNEQ9akyLKHsMouWADrxdJX2ytsZ"{{end}},
+                    "INPUT_DIR=/input/",
+                    "OUTPUT_DIR=/outputs/"
+                ],
+                "Image": "yfantisa/deepfake:latest@sha256:d582170d80d2f83727e59b4cd2058ca2d56f1f3098078c9a3645d6f15566c988"
+            },
+            "Engine": "Docker",
+            "Language": {
+                "JobContext": {}
+            },
+            "Network": {
+                "Type": "None"
+            },
+            "PublisherSpec": {
+                "Type": "IPFS"
+            },
+            "Resources": {
+                "CPU": "4",
+                "Memory": "3gb",
+                "GPU": "1"
+            },
+            "Timeout": 1800,
+            "Verifier": "Noop",
+            "Wasm": {
+                "EntryModule": {}
+            },
+            "inputs": [
+                {
+                    "CID": {{.inputCid}},
+                    "Name": "input_videos",
+                    "StorageSource": "IPFS",
+                    "path": "/input"
+                }
+            ],
+            "outputs": [
+                {
+                    "Name": "outputs",
+                    "StorageSource": "IPFS",
+                    "path": "/outputs"
+                }
+            ]
+        }
+    }
+}
