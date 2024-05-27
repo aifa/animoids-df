@@ -16,7 +16,7 @@
             },
            "Docker": {
                 "Entrypoint": ["./predict_submission.sh /input /outputs/submission.csv"],
-                s"EnvironmentVariables": [
+                "EnvironmentVariables": [
                     {{if .inputCid}}{{.inputCid}}{{else}}"CID=QmaDxKbSz91R1nQS9jDNEQ9akyLKHsMouWADrxdJX2ytsZ"{{end}},
                     "INPUT_DIR=/input/",
                     "OUTPUT_DIR=/outputs/"
