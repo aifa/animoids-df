@@ -17,13 +17,13 @@
             "Docker": {},
             "EngineSpec": {
                 "Params": {
-                "Entrypoint": ["./predict_submission.sh /input /outputs/submission.csv"],
+                "Entrypoint": null,
                 "EnvironmentVariables": [
                     {{if .inputCid}}{{.inputCid}}{{else}}"CID=QmaDxKbSz91R1nQS9jDNEQ9akyLKHsMouWADrxdJX2ytsZ"{{end}},
-                    "INPUT_DIR=/input/",
-                    "OUTPUT_DIR=/outputs/"
+                    "INPUT_DIR=/input",
+                    "OUTPUT_DIR=/outputs"
                 ],
-                "Image": "yfantisa/deepfake:latest@sha256:0d343cdd0224122bb2c6b31426ea04bbf5eff71a488ba2c281ee68cc8551a957",
+                "Image": "yfantisa/df:latest@sha256:cc3d34ccb413e326ce0cd238ecc6e627dcdc04bed68b0eaa3286c598848f4434",
                 "Parameters": [
                 ],
                 "WorkingDirectory": ""
@@ -51,6 +51,8 @@
                 "Type": "ipfs"
             },
             "Resources": {
+                "CPU": "4",
+                "Memory": "3gb",
                 "GPU": "1"
             },
             "Timeout": 1800,
