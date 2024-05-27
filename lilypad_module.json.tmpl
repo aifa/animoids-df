@@ -19,7 +19,6 @@
                 "Params": {
                 "Entrypoint": ["./predict_submission.sh /input /outputs/submission.csv"],
                 "EnvironmentVariables": [
-                    {{ if .Prompt }}"{{ subst "PROMPT=%s" .Prompt }}"{{ end }},
                     {{if .inputCid}}{{.inpudCid}}{{else}}"CID=QmaDxKbSz91R1nQS9jDNEQ9akyLKHsMouWADrxdJX2ytsZ"{{end}},
                     "INPUT_DIR=/input/",
                     "OUTPUT_DIR=/outputs/"
@@ -36,7 +35,7 @@
             },
             "inputs": [
                 {
-                    "CID": {{.imgCid}},
+                    "CID": {{.inpudCid}},
                     "Name": "input_videos",
                     "StorageSource": "IPFS",
                     "path": "/input"
