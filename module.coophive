@@ -15,13 +15,13 @@
                 "Concurrency": 1
             },
            "Docker": {
-                "Entrypoint": ["./predict_submission.sh /input /outputs/submission.csv"],
+                "Entrypoint": [],
                 "EnvironmentVariables": [
                     {{if .inputCid}}{{.inputCid}}{{else}}"CID=QmaDxKbSz91R1nQS9jDNEQ9akyLKHsMouWADrxdJX2ytsZ"{{end}},
-                    "INPUT_DIR=/input/",
-                    "OUTPUT_DIR=/outputs/"
+                    "INPUT_DIR=/input",
+                    "OUTPUT_DIR=/outputs"
                 ],
-                "Image": "yfantisa/deepfake:latest@sha256:d582170d80d2f83727e59b4cd2058ca2d56f1f3098078c9a3645d6f15566c988"
+                "Image": "yfantisa/df:latest@ssha256:a6ff8d15e50938cdab271c4692fa361a85b72847c52a9064f3310fab9a5f9d59"
             },
             "Engine": "Docker",
             "Language": {

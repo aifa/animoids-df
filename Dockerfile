@@ -51,10 +51,15 @@ WORKDIR /workspace
 # Copying the required codebase
 COPY . /workspace
 
+ENV INPUT_DIR="/input"
+ENV OUTPUT_DIR="/outputs"
+
 RUN chmod 777 preprocess_data.sh
 RUN chmod 777 train.sh
 RUN chmod 777 predict_submission.sh
 
 ENV PYTHONPATH=.
 
-CMD ["/bin/bash"]
+# CMD ["/bin/bash"]
+
+ENTRYPOINT ["/bin/bash", "-c", "/workspace/predict_submission.sh $INPUT_DIR $OUTPUT_DIR/results.csv"]
