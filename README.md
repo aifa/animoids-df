@@ -1,3 +1,8 @@
+
+Adapted Dockerfile inference on CoopHive.
+
+
+
 ## DeepFake Detection (DFDC) Solution by @selimsef
 
 ## Challenge details:
