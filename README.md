@@ -1,5 +1,5 @@
 
-Adapted Dockerfile inference on CoopHive.
+Hack FS - Changes in docker image setup - Some version chanegs, plus few code changes to run inference on CoopHive.
 
 
 
